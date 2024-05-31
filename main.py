@@ -5,6 +5,7 @@ from routers.venue import venue
 from routers.venue import venue_events
 from routers.venue import venue_images
 from routers.venue import all_data
+from routers.news import MFTNewsRouter
 from routers.venue import test
 from database.database import engine, SessionLocal
 from typing import Annotated
@@ -64,5 +65,6 @@ app.include_router(venue.router)
 app.include_router(venue_events.router)
 app.include_router(venue_images.router)
 app.include_router(all_data.router)
+app.include_router(MFTNewsRouter.router)
 # app.include_router(test)
 # app.include_router(todo.router)
