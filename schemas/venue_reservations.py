@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
 
+
 class VenueReservationsBase(BaseModel):
     user_id: int = 0
     booking_date: Optional[datetime] = None
@@ -19,8 +20,10 @@ class VenueReservationsBase(BaseModel):
     class Config:
         orm_mode = True
 
+
 class VenueReservationsCreate(VenueReservationsBase):
     pass
+
 
 class VenueReservations(VenueReservationsBase):
     id: int

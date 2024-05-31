@@ -2,20 +2,13 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from models.venue.venue import Venues
 from schemas.venue import VenueBase, VenueUpdate
-from database.database import SessionLocal, engine
+from database.database import get_db
 from passlib.context import CryptContext
 from typing import Annotated
 
 
 router = APIRouter()
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
-
-def get_db():
-    db = SessionLocal()
-    try: 
-        yield db
-    finally:
-        db.close()
 
 db_dependency = Annotated[Session, Depends(get_db)]
 

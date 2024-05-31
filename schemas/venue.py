@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime, time
 from typing import Optional
 
+
 class VenueBase(BaseModel):
     lang: str = 'en'
     sub_category_id: int
@@ -65,8 +66,10 @@ class VenueBase(BaseModel):
     class Config:
         orm_mode = True
 
+
 class VenueCreate(VenueBase):
     pass
+
 
 class VenueUpdate(VenueBase):
     id: int

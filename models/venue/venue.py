@@ -1,6 +1,8 @@
 from database.database import Base
-from sqlalchemy import Column, ForeignKey, Integer, String, Time, BigInteger, Text, DOUBLE_PRECISION, TIMESTAMP, SmallInteger
-from sqlalchemy.sql import func 
+from sqlalchemy import Column, ForeignKey, Integer, String, Time, BigInteger, Text, DOUBLE_PRECISION, TIMESTAMP, \
+    SmallInteger
+from sqlalchemy.sql import func
+
 
 class Venues(Base):
     __tablename__ = 'mft_venues'
