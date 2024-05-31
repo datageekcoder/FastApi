@@ -2,6 +2,7 @@ from database.database import Base
 from sqlalchemy import Column, BigInteger, Text, TIMESTAMP
 from sqlalchemy.sql import func
 
+
 class Venue_Reservations(Base):
     __tablename__ = 'mft_venue_reservations'
 

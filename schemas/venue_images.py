@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
 
+
 class VenueImageBase(BaseModel):
     venue_id: Optional[int] = None
     image_type: str
@@ -12,8 +13,10 @@ class VenueImageBase(BaseModel):
     class Config:
         from_attributes = True
 
+
 class VenueImageCreate(VenueImageBase):
     pass
+
 
 class Image(VenueImageBase):
     id: int
