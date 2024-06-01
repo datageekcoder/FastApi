@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:12345@localhost:5432/my_finder_db"  # 'sqlite:///./myfinder.db'
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:admin@localhost:5432/myfirst"  # 'sqlite:///./myfinder.db'
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
