@@ -5,11 +5,11 @@ from typing import Optional
 
 class VenueEventBase(BaseModel):
     venue_id: int
-    name: Optional[str] = None
-    datetime: Optional[datetime] = None  # type: ignore
+    name: Optional[str]
+    datetime: Optional[datetime]  # type: ignore
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class VenueEventCreate(VenueEventBase):

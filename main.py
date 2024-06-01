@@ -1,4 +1,5 @@
 from fastapi import FastAPI, status, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from routers.authentication import auth
 from routers.users import users
 from routers.venue import venue
@@ -7,6 +8,7 @@ from routers.venue import venue_images
 from routers.venue import all_data
 from routers.news import MFTNewsRouter
 from routers.news import MFTNewsDetailsRouter
+from routers.amenities import MFTAmenitiesRouter
 from routers.venue import test
 from database.database import engine, SessionLocal
 from typing import Annotated
@@ -28,6 +30,19 @@ logger = logging.getLogger(__name__)
 # )
 
 app = FastAPI()
+
+origins = [
+    "http://127.0.0.1:5500",
+]
+
+# Set CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -68,5 +83,6 @@ app.include_router(venue_images.router)
 app.include_router(all_data.router)
 app.include_router(MFTNewsRouter.router)
 app.include_router(MFTNewsDetailsRouter.router)
+app.include_router(MFTAmenitiesRouter.router)
 # app.include_router(test)
 # app.include_router(todo.router)
