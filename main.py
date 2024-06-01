@@ -9,6 +9,7 @@ from routers.venue import all_data
 from routers.news import MFTNewsRouter
 from routers.news import MFTNewsDetailsRouter
 from routers.amenities import MFTAmenitiesRouter
+from routers.users import MFTUserRouter
 from routers.venue import test
 from database.database import engine, SessionLocal
 from typing import Annotated
@@ -84,5 +85,7 @@ app.include_router(all_data.router)
 app.include_router(MFTNewsRouter.router)
 app.include_router(MFTNewsDetailsRouter.router)
 app.include_router(MFTAmenitiesRouter.router)
+app.include_router(MFTUserRouter.router)
+
 # app.include_router(test)
 # app.include_router(todo.router)

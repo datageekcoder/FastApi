@@ -1,12 +1,45 @@
+from datetime import datetime
 from database.database import Base
-from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
- 
+from sqlalchemy import Column, String, Boolean, DateTime, Text, BigInteger, Date, TIMESTAMP
 
-class webUsers(Base):
+
+class MFTUsers(Base):
     __tablename__ = 'mft_users'
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True)
-    user_type = Column(String, unique=True)
-    email = Column(String)
-    password = Column(String)
+    id = Column(BigInteger, primary_key=True, index=True)
+    name = Column(String(191), nullable=False)
+    user_type = Column(BigInteger, nullable=False)
+    email = Column(String(191), nullable=False)
+    email_verified_at = Column(DateTime(timezone=True))
+    password = Column(String(191), nullable=False)
+    remember_token = Column(String(100))
+    timezone = Column(String(191))
+    reset_token = Column(Text)
+    profile_picture = Column(Text)
+    qr_image = Column(Text)
+    mobile_no = Column(Text)
+    company_name = Column(Text)
+    address = Column(Text)
+    business_type = Column(String(191))
+    status = Column(BigInteger, nullable=False, default=1)
+    publisher_category_type = Column(BigInteger, nullable=False, default=0)
+    otp = Column(Text)
+    otp_status = Column(BigInteger, nullable=False, default=0)
+    username = Column(Text)
+    list_category = Column(Text)
+    list_subcategory = Column(Text)
+    status_text = Column(Text)
+    location = Column(Text)
+    ip_location = Column(Text)
+    lat = Column(String(191))
+    lng = Column(String(191))
+    gender = Column(String(191))
+    dob = Column(Date)
+    city = Column(String(191))
+    town = Column(String(191))
+    facial_id = Column(String(191))
+    logout = Column(Boolean, nullable=False, default=False)
+    listed_by = Column(Boolean, nullable=False, default=True)
+    created_by = Column(BigInteger, nullable=False, default=1)
+    created_at = Column(TIMESTAMP(timezone=True), default=datetime.utcnow)
+    updated_at = Column(TIMESTAMP(timezone=True), default=datetime.utcnow, onupdate=datetime.utcnow)
