@@ -6,9 +6,9 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from database.database import get_db
-from models.mft_news import MFTNews
+from models.news.mft_news import MFTNews
 from routers.authentication.auth import get_current_user
-from schemas.MFTNewsSchema import MFTNewsResponse
+from schemas.news.MFTNewsSchema import MFTNewsResponse
 from schemas.users import UserResponse
 
 router = APIRouter(tags=['MFT News'])
@@ -18,7 +18,7 @@ if not os.path.exists(UPLOAD_DIRECTORY):
     os.makedirs(UPLOAD_DIRECTORY)
 
 
-@router.get("/mft_news/{news_id}", response_model=MFTNewsResponse)
+@router.get("/news/{news_id}", response_model=MFTNewsResponse)
 async def get_mft_news(
         news_id: int,
         db: Session = Depends(get_db),
@@ -52,7 +52,7 @@ async def get_mft_news(
         return JSONResponse(status_code=400, content=content)
 
 
-@router.post("/mft_news", response_model=MFTNewsResponse)
+@router.post("/news", response_model=MFTNewsResponse)
 async def create_mft_news(
         db: Session = Depends(get_db),
         current_user: UserResponse = Depends(get_current_user),
@@ -108,7 +108,7 @@ async def create_mft_news(
         return JSONResponse(status_code=400, content=content)
 
 
-@router.put("/mft_news/{news_id}", response_model=MFTNewsResponse)
+@router.put("/news/{news_id}", response_model=MFTNewsResponse)
 async def update_mft_news(
         news_id: int,
         db: Session = Depends(get_db),
@@ -176,7 +176,7 @@ async def update_mft_news(
         return JSONResponse(status_code=400, content=content)
 
 
-@router.delete("/mft_news/{news_id}", response_model=MFTNewsResponse)
+@router.delete("/news/{news_id}", response_model=MFTNewsResponse)
 async def delete_mft_news(
         news_id: int,
         db: Session = Depends(get_db),
