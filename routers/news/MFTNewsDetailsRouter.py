@@ -81,7 +81,7 @@ async def update_news_details(news_details_id: int, news_details: MFTNewsDetails
     if db_news_details is None:
         return JSONResponse(
             status_code=status.HTTP_404_NOT_FOUND,
-            content={"status": "ERROR", "data": {}, "message": "News details not found or already deleted"}
+            content={"status": "ERROR", "data": {}, "message": "News details not found"}
         )
     news_details = news_details.dict(exclude_unset=True)
     for var, value in news_details.items():
@@ -111,7 +111,7 @@ async def delete_mft_news_details(
             content = {
                 "status": "FAIL",
                 "data": {},
-                "message": "News details not found."
+                "message": "News details not found or already deleted"
             }
             return JSONResponse(status_code=404, content=content)
 
