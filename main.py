@@ -25,37 +25,41 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-models.Base.metadata.create_all(bind=engine)
+#models.Base.metadata.create_all(bind=engine)
 
-def get_db():
-    db = SessionLocal()
-    try: 
-        yield db
-    finally:
-        db.close()
+@app.get("/")
+async def test():
+    return {'test':'data'}
 
-db_dependency = Annotated[Session, Depends(get_db)]
-user_dependency = Annotated[dict, Depends(get_current_user)]
+# def get_db():
+#     db = SessionLocal()
+#     try: 
+#         yield db
+#     finally:
+#         db.close()
 
-@app.get("/", status_code=status.HTTP_200_OK)
-async def user(user: user_dependency, db:db_dependency):
-    if user is None:
-        raise HTTPException(status_code=401, detail="Authentication Fail")
-    return {'User': user}
+# db_dependency = Annotated[Session, Depends(get_db)]
+# user_dependency = Annotated[dict, Depends(get_current_user)]
 
-@app.get("/users", status_code=201)
-async def get_allusers(user: user_dependency, db:db_dependency):
-    if user is None:
-        raise HTTPException(status_code=401, detail="Authentication Fail")
+# @app.get("/", status_code=status.HTTP_200_OK)
+# async def user(user: user_dependency, db:db_dependency):
+#     if user is None:
+#         raise HTTPException(status_code=401, detail="Authentication Fail")
+#     return {'User': user}
+
+# @app.get("/users", status_code=201)
+# async def get_allusers(user: user_dependency, db:db_dependency):
+#     if user is None:
+#         raise HTTPException(status_code=401, detail="Authentication Fail")
     
-    logger.info(f"User Authenticated: {user}")
-    return db.query(Users).all()
+#     logger.info(f"User Authenticated: {user}")
+#     return db.query(Users).all()
 
-app.include_router(auth.router)
-app.include_router(users.router)
-app.include_router(venue.router)
-app.include_router(venue_events.router)
-app.include_router(venue_images.router)
-app.include_router(all_data.router)
-# app.include_router(test)
-#app.include_router(todo.router)
+# app.include_router(auth.router)
+# app.include_router(users.router)
+# app.include_router(venue.router)
+# app.include_router(venue_events.router)
+# app.include_router(venue_images.router)
+# app.include_router(all_data.router)
+# # app.include_router(test)
+# #app.include_router(todo.router)
